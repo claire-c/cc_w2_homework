@@ -21,7 +21,7 @@ class RoomTest < MiniTest::Test
     mike = Guest.new("Mike")
     aileen = Guest.new("Aileen")
 
-    @guest = Guest.new("Lewis")
+    @guest = Guest.new("Lewis", 20)
 
     @occupants = [claire, ewa, mike, aileen]
 
@@ -38,6 +38,10 @@ class RoomTest < MiniTest::Test
 
   def test_get_room_playlist()
     assert_equal(@playlist, @room.playlist)
+  end
+
+  def test_get_room_fee()
+    assert_equal(5, @room.fee)
   end
 
   def test_count_playlist()
@@ -66,6 +70,7 @@ class RoomTest < MiniTest::Test
   def test_add_guest()
     @room.add_guest(@guest)
     assert_equal(5, @room.count_occupants)
+    assert_equal(5, @room.till)
   end
 
   def test_remove_any_guest()
@@ -101,12 +106,12 @@ class RoomTest < MiniTest::Test
     assert_equal(4, @room.count_occupants)
   end
 
-  def test_is_room_full__not_full()
+  def test_is_room_full__false()
     result = @room.is_room_full?()
     assert_equal(false, result)
   end
 
-  def test_is_room_full__full()
+  def test_is_room_full__true()
     occupants = [ Guest.new("Claire"),
                   Guest.new("Ewa"),
                   Guest.new("Mike"),
@@ -122,5 +127,5 @@ class RoomTest < MiniTest::Test
 
 
 
-  
+
 end

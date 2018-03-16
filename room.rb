@@ -3,12 +3,15 @@ require('pry')
 class Room
 
 attr_reader :name, :occupants, :playlist
+attr_accessor :fee, :till
 
   def initialize(name, occupants, playlist)
     @name = name
     @occupants = occupants
     @playlist = playlist
     @capacity = 6
+    @fee = 5
+    @till = 0
   end
 
   def count_playlist()
@@ -24,7 +27,10 @@ attr_reader :name, :occupants, :playlist
   end
 
   def add_guest(guest_to_add)
-    @occupants << guest_to_add if @occupants.count <= @capacity
+     if @occupants.count < @capacity && guest_to_add.wallet >= @fee
+       @occupants << guest_to_add
+       @till += @fee
+     end
   end
 
   def remove_any_guest()
