@@ -123,7 +123,14 @@ class RoomTest < MiniTest::Test
     assert_equal(true, result)
   end
 
+  def test_is_song_in_playlist__true()
+    @room.add_song(@song)
+    assert_equal(true, @room.is_song_in_playlist?(@song))
+  end
 
+  def test_is_song_in_playlist__true()
+    assert_equal(false, @room.is_song_in_playlist?(@song))
+  end
 
 
 

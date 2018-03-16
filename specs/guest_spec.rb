@@ -22,7 +22,7 @@ class GuestTest < MiniTest::Test
     aileen = Guest.new("Aileen")
 
     @occupants = [claire, ewa, mike, aileen]
-    @guest = Guest.new("Claire", 25)
+    @guest = Guest.new("Claire", 25, @song)
 
     @room = Room.new("Karaoke Room", @occupants, @playlist)
 
@@ -49,8 +49,18 @@ class GuestTest < MiniTest::Test
     assert_nil(skint_guest.pay_fee(@room))
   end
 
-  #
-  # Karaoke venues usually have an entry fee - So the guests could have money so they can pay it.
+  def test_fave_song_in_room__true()
+    @room.add_song(@song)
+    result = @guest.fave_song_in_room(@room)
+    assert_equal("Yus, prepare to hear Sledgehammer!", result)
+  end
+
+  def test_fave_song_in_room__false()
+    result = @guest.fave_song_in_room(@room)
+    assert_equal("Boo, this playlist sucks", result)
+  end
+
+  # Guests could have a favourite song, and if their favourite song is on the room's playlist, they can cheer loudly! (return a string like "Whoo!")
 
 
 end

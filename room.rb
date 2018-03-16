@@ -59,4 +59,9 @@ attr_accessor :fee, :till
     @occupants.count >= @capacity
   end
 
+  def is_song_in_playlist?(song_to_check)
+    song_titles = @playlist.map { |song| song.title }
+    song_titles.include?(song_to_check.title)
+  end
+
 end
