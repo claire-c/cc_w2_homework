@@ -101,7 +101,26 @@ class RoomTest < MiniTest::Test
     assert_equal(4, @room.count_occupants)
   end
 
-  # Check out guests from rooms
+  def test_is_room_full__not_full()
+    result = @room.is_room_full?()
+    assert_equal(false, result)
+  end
+
+  def test_is_room_full__full()
+    occupants = [ Guest.new("Claire"),
+                  Guest.new("Ewa"),
+                  Guest.new("Mike"),
+                  Guest.new("Aileen"),
+                  Guest.new("Simon"),
+                  Guest.new("Pawel")]
+    full_room = Room.new("Karaoke Room", occupants, @playlist)
+    result = full_room.is_room_full?()
+    assert_equal(true, result)
+  end
 
 
+
+
+
+  
 end

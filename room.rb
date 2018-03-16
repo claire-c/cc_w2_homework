@@ -8,6 +8,7 @@ attr_reader :name, :occupants, :playlist
     @name = name
     @occupants = occupants
     @playlist = playlist
+    @capacity = 6
   end
 
   def count_playlist()
@@ -23,7 +24,7 @@ attr_reader :name, :occupants, :playlist
   end
 
   def add_guest(guest_to_add)
-    @occupants << guest_to_add
+    @occupants << guest_to_add if @occupants.count <= @capacity
   end
 
   def remove_any_guest()
@@ -46,6 +47,10 @@ attr_reader :name, :occupants, :playlist
         @occupants.delete(occupant)
       end
     end
+  end
+
+  def is_room_full?()
+    @occupants.count >= @capacity
   end
 
 end
