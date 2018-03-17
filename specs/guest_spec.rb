@@ -60,7 +60,6 @@ class GuestTest < MiniTest::Test
     assert_equal("Boo, this playlist sucks", result)
   end
 
-  # Guests could have a favourite song, and if their favourite song is on the room's playlist, they can cheer loudly! (return a string like "Whoo!")
 
 
 end
