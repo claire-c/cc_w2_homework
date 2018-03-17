@@ -16,8 +16,12 @@ class Bar
       @till += order[:cost]
       guest_ordering.wallet -= order[:cost]
     end
-
   end
 
+  def print_orders()
+    @orders.each do |order|
+      p order
+    end
+  end
 
 end

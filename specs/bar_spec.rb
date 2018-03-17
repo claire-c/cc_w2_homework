@@ -57,11 +57,13 @@ class BarTest < MiniTest::Test
     assert_equal(["Chips", "Gin and tonic", "Burger"], @bar.orders)
   end
 
-
+  def test_print_orders()
+    order = [{name: "Chips", cost: 3},
+             {name: "Gin and tonic", cost: 7},
+             {name: "Burger", cost: 6}]
+    @bar.take_order(@guest, order)
+    assert_equal(["Chips","Gin and tonic","Burger"], @bar.print_orders)
+  end
 
 
 end
-
-
-
-# Rooms can keep track of the entry fees/spending of the guests - maybe add a bar tab/bar class?
