@@ -11,9 +11,12 @@ class Bar
   end
 
   def take_order(guest_ordering, guest_order)
-    @orders << guest_order[:name]
-    guest_ordering.wallet -= guest_order[:cost]
-    @till += guest_order[:cost]
+    guest_order.each do |order|
+      @orders << order[:name]
+      @till += order[:cost]
+      guest_ordering.wallet -= order[:cost]
+    end
+
   end
 
 

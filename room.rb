@@ -2,8 +2,8 @@ require('pry')
 
 class Room
 
-attr_reader :name, :occupants, :playlist
-attr_accessor :fee, :till
+attr_reader :name, :occupants, :playlist, :fee
+attr_accessor :till
 
   def initialize(name, occupants, playlist)
     @name = name
@@ -62,6 +62,10 @@ attr_accessor :fee, :till
   def is_song_in_playlist?(song_to_check)
     song_titles = @playlist.map { |song| song.title }
     song_titles.include?(song_to_check.title)
+  end
+
+  def add_room_bar_tills(bar_to_add)
+    @till += bar_to_add.till
   end
 
 end
