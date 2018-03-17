@@ -39,15 +39,23 @@ class BarTest < MiniTest::Test
     assert_equal([], @bar.orders)
   end
 
-  def test_take_order__one_item()
-    order = {name: "Chips", cost: 3}
+  # def test_take_order__one_item()
+  #   order = {name: "Chips", cost: 3}
+  #   result = @bar.take_order(@guest, order)
+  #   assert_equal(503, @bar.till)
+  #   assert_equal(22, @guest.wallet)
+  #   assert_equal(["Chips"], @bar.orders)
+  # end
+
+  def test_take_order__multiple_items()
+    order = [{name: "Chips", cost: 3},
+             {name: "Gin and tonic", cost: 7},
+             {name: "Burger", cost: 6}]
     result = @bar.take_order(@guest, order)
-    assert_equal(503, @bar.till)
-    assert_equal(22, @guest.wallet)
-    assert_equal(["Chips"], @bar.orders) 
+    assert_equal(516, @bar.till)
+    assert_equal(9, @guest.wallet)
+    assert_equal(["Chips", "Gin and tonic", "Burger"], @bar.orders)
   end
-
-
 
 
 
